@@ -12,6 +12,7 @@ import androidx.camera.view.CameraController
 import androidx.camera.view.LifecycleCameraController
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -21,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.yeaminthesis.potholeai.domain.BoundingBox
@@ -81,15 +83,24 @@ class MainActivity : ComponentActivity(), Detector.DetectorListener {
                 Scaffold(modifier = Modifier.fillMaxSize()) {  innerPadding ->
                     Box(modifier = Modifier.fillMaxSize()) {
                         var toggle by rememberSaveable { mutableStateOf(false) }
-                        CameraScreen(controller)  // Show the camera preview
+                        var text by rememberSaveable { mutableStateOf("Start") }
+                          // Show the camera preview
+                        CameraScreen(controller)
                         Button(
                             onClick = {
                                 toggle = !toggle
-                            }
+                                if(toggle) text = "Stop"
+                                else text = "Start"
+                            },
+                            modifier = Modifier
+                                .padding(top = 50.dp, start = 20.dp)
                         ) {
-                            Text("Toggle")
+                            Text(text)
                         }
-                        if(toggle) DetectionOverlay(boxList,)  // Show bounding boxes and labels on top
+                        if(toggle) {
+
+                            DetectionOverlay(boxList,)
+                        }  // Show bounding boxes and labels on top
                     }
                 }
             }

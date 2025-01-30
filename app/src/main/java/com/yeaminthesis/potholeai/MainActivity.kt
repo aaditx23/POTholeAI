@@ -49,7 +49,7 @@ class MainActivity : ComponentActivity(), Detector.DetectorListener {
 
                 val detector = Detector(
                     context = applicationContext,
-                    modelPath = "model_10epoch.tflite",
+                    modelPath = "best (3)_float32 (2).tflite",
                     labelPath = "labels.txt",
                     detectorListener = this
                 )

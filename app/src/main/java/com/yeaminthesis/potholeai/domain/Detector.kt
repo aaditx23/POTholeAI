@@ -127,8 +127,10 @@ class Detector(
             }
 
             if (maxConf > CONFIDENCE_THRESHOLD) {
-                println("PAisi")
+                println("PAisi ${maxIdx}")
                 val clsName = labels[maxIdx]
+                println(clsName)
+                println(array)
                 val cx = array[c] // 0
                 val cy = array[c + numElements] // 1
                 val w = array[c + numElements * 2]
